@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>duyzz.12 - Kecerdasan Buatan Masa Depan</title>
+    <style>
+        /* --- CSS Dasar & Variabel --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #161616;
+            --primary-color: #8a2be2; /* BlueViolet */
+            --secondary-color: #00d4ff; /* Cyan */
+            --text-color: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(10, 10, 10, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Fitur Section --- */
+        .features {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* --- Chat Interface (Demo) --- */
+        .chat-section {
+            padding: 80px 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .chat-box {
+            background: var(--card-bg);
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background: #222;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff88;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .bot-msg {
+            align-self: flex-start;
+            background: #333;
+            border-bottom-left-radius: 0;
+        }
+
+        .user-msg {
+            align-self: flex-end;
+            background: var(--primary-color);
+            border-bottom-right-radius: 0;
+        }
+
+        .input-area {
+            padding: 20px;
+            background: #222;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #111;
+            color: white;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--secondary-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #050505;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Menu sederhana untuk HP */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">duyzz.12</div>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#features">Fitur</a></li>
+            <li><a href="#chat">Coba AI</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Halo, Saya <span>duyzz.12</span></h1>
+        <p>Kecerdasan buatan generasi baru yang siap membantu Anda dengan informasi, kreativitas, dan solusi teknologi.</p>
+        <a href="#chat" class="btn">Mulai Percakapan</a>
+    </section>
+
+    <!-- Fitur Section -->
+    <section class="features" id="features">
+        <div class="card">
+            <h3>⚡ Respons Cepat</h3>
+            <p>Didukung oleh server高性能 untuk memberikan jawaban dalam hitungan milidetik.</p>
+        </div>
+        <div class="card">
+            <h3>🧠 Pembelajaran</h3>
+            <p>duyzz.12 terus belajar dari interaksi untuk memberikan jawaban yang lebih akurat.</p>
+        </div>
+        <div class="card">
+            <h3>🔒 Privasi Terjamin</h3>
+            <p>Data Anda dienkripsi dan tidak pernah dibagikan kepada pihak ketiga.</p>
+        </div>
+    </section>
+
+    <!-- Chat Demo Section -->
+    <section class="chat-section" id="chat">
+        <div class="chat-box">
+            <div class="chat-header">
+                <div class="status-dot"></div>
+                duyzz.12 Online
+            </div>
+            <div class="messages" id="messageContainer">
+                <div class="message bot-msg">
+                    Halo! Saya duyzz.12. Ada yang bisa saya bantu hari ini?
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Ketik pesan Anda..." onkeypress="handleKeyPress(event)">
+                <button class="btn" onclick="sendMessage()">Kirim</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 duyzz.12 AI. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        const messageContainer = document.getElementById('messageContainer');
+        const userInput = document.getElementById('userInput');
+
+        // Fungsi untuk menangani tombol Enter
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Fungsi mengirim pesan
+        function sendMessage() {
+            const text = userInput.value.trim();
+            if (text === "") return;
+
+            // Tampilkan pesan user
+            addMessage(text, 'user-msg');
+            userInput.value = '';
+
+            // Simulasi "Mengetik..." dan Balasan Otomatis
+            setTimeout(() => {
+                const botReply = getBotResponse(text);
+                addMessage(botReply, 'bot-msg');
+            }, 1000);
+        }
+
+        // Fungsi menambahkan elemen pesan ke DOM
+        function addMessage(text, className) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', className);
+            msgDiv.innerText = text;
+            messageContainer.appendChild(msgDiv);
+            
+            // Auto scroll ke bawah
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        // Logika Sederhana untuk Respons AI
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+
+            if (input.includes('halo') || input.includes('hai')) {
+                return "Halo juga! Senang bisa berbicara denganmu.";
+            } else if (input.includes('nama') || input.includes('siapa')) {
+                return "Saya adalah duyzz.12, asisten AI buatan Anda.";
+            } else if (input.includes('waktu') || input.includes('jam')) {
+                return new Date().toLocaleTimeString();
+            } else if (input.includes('hitung') || input.includes('1+1')) {
+                return "1 + 1 = 2 (Semoga jawaban saya benar ya hehe).";
+            } else {
+                return "Maaf, saya masih belajar. Bisakah Anda menjelaskan lebih detail?";
+            }
+        }
+    </script>
+</body>
+  </html>
